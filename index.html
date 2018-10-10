@@ -40,7 +40,7 @@
             <div class="inner cover">
               <h5 class="text-center mb-5">User Login</h5>
 
-               <button type="button" class="btn btn-primary btn-block" @click="openFbLoginDialog">Facebook Login</button>
+              <button type="button" class="btn btn-primary btn-block" @click="openFbLoginDialog">Facebook Login</button>
 
               <div class="text-center mt-4 mb-5" style="width: 10rem; height: 13px; border-bottom: 1px dotted #ccc; margin: 0 auto;">
                 <span style="font-size: 16px; background-color: #FFF; padding: 0 10px; font-weight: bold; color: #999">
@@ -81,7 +81,7 @@
       message: 'Hello Vue!'
    },
    methods: {
-     openFbLoginDialog () {
+     openFbLoginDialog: function() {
        FB.login(this.checkLoginState, { scope: 'email' })
      },
      checkLoginState: function (response) {
