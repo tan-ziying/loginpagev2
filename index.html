@@ -76,15 +76,28 @@
 
   <script>
     var app = new Vue({
-         el: '#app',
-         methods: {
-               openFbLoginDialog () {
-                  FB.login(function(response) {
-                      console.log(response);
-                   }, { scope: 'email' })
-               }
-         }
- })
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+   },
+   methods: {
+     openFbLoginDialog () {
+       FB.login(this.checkLoginState, { scope: 'email' })
+     },
+     checkLoginState: function (response) {
+        if (response.status === 'connected') {
+          FB.api('/me', { fields: 'name,email' }, function(profile) {
+            console.log('Good to see you, ' + profile.name + '.');
+          });
+       } else if (response.status === 'not_authorized') {
+        // the user is logged in to Facebook, 
+          // but has not authenticated your app
+        } else {
+          // the user isn't logged in to Facebook.
+        }
+      },
+   }
+  });
   </script>
 </body>
 </html>
